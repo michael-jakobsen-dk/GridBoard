@@ -7,7 +7,8 @@ Ext.define('CustomApp', {
             models: ['PortfolioItem/Feature'],
             autoLoad: true,
             enableHierarchy: true,
-            fetch: ['Name', 'State', 'RefinedEstimate']
+            //fetch: ['Name', 'State', 'RefinedEstimate']
+            fetch: true
         }).then({
             success: this._onStoreBuilt,
             scope: this
