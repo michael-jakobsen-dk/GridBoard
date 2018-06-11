@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GridBoard</title>
+
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.1/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){console.log("launch()"),Ext.create("Rally.data.wsapi.TreeStoreBuilder").build({models:["PortfolioItem/Feature"],autoLoad:!0,enableHierarchy:!0,fetch:["Name","State","RefinedEstimate"]}).then({success:this._onStoreBuilt,scope:this})},_onStoreBuilt:function(e){console.log("_onStoreBuilt()");var t=this.getContext(),o=this.add({xtype:"rallygridboard",context:t,modelNames:["PortfolioItem/Feature"],toggleState:"grid",gridConfig:{store:e,alwaysShowDefaultColumns:!0,columnCfgs:["Name","State",{text:"Refined",dataIndex:"RefinedEstimate",renderer:function(e){return console.log("RefinedEstimate:renderer"),e+" EUR"}},{text:"Department (Yrs)",xtype:"templatecolumn",tpl:"{RefinedEstimate} ({Name})"}]},height:this.getHeight()});console.log("myGrid = ",o)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"GridBoard",
+                parentRepos:"",
+                version:"0.1.1"
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
